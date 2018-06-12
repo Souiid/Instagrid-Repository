@@ -12,8 +12,11 @@ class PhotoView: UIView {
     
     @IBOutlet var upView : UIView!
     @IBOutlet var downView: UIView!
+    @IBOutlet var images : UIImageView!
+    @IBOutlet var photoButtons: UIButton!
     
-    enum Style {
+    
+        enum Style {
         case upSquares, downSquares, allSquares
     }
     
@@ -27,12 +30,24 @@ class PhotoView: UIView {
         switch style {
         case .upSquares:
             downView.isHidden = true
+            upView.isHidden = false
         case .downSquares:
             upView.isHidden = true
+            downView.isHidden = false
         case .allSquares:
             upView.isHidden = false
             downView.isHidden = false
         }
     }
-
+    
+    func refresh() {
+       self.images.isHidden = true
+        self.images.image = #imageLiteral(resourceName: "AllSquares")
+        self.photoButtons.isHidden = false
+    }
+    
+    
+    
 }
+
+

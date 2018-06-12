@@ -11,9 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Delm-Medium.otf">
-            <string>Delm-Medium</string>
-        </array>
         <array key="ThirstySoftRegular.otf">
             <string>ThirstySoftRegular</string>
         </array>
@@ -45,6 +42,9 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bID-mC-xpN">
                                                                 <rect key="frame" x="30.5" y="30" width="48" height="49"/>
                                                                 <state key="normal" image="Combined"/>
+                                                                <connections>
+                                                                    <action selector="addPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Aau-D6-PA2"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,15 +57,18 @@
                                                             <constraint firstItem="bID-mC-xpN" firstAttribute="centerX" secondItem="uY3-Kf-uu9" secondAttribute="centerX" id="zQd-5U-At0"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQv-II-02b">
+                                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQv-II-02b">
                                                         <rect key="frame" x="122.5" y="0.0" width="107.5" height="107.5"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-Yh-fVP">
                                                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toa-lf-BJU">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toa-lf-BJU">
                                                                 <rect key="frame" x="30.5" y="30" width="48" height="49"/>
                                                                 <state key="normal" image="Combined"/>
+                                                                <connections>
+                                                                    <action selector="addPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GMT-Bs-vmz"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,15 +86,18 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="rhs-3D-fvh">
                                                 <rect key="frame" x="0.0" y="122.5" width="230" height="107.5"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ba-bo-ood">
+                                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ba-bo-ood">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qtf-2l-3Lk">
                                                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zz6-F7-xJE">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zz6-F7-xJE">
                                                                 <rect key="frame" x="30.5" y="30" width="48" height="49"/>
                                                                 <state key="normal" image="Combined"/>
+                                                                <connections>
+                                                                    <action selector="addPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Or1-jC-ZHh"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,15 +110,18 @@
                                                             <constraint firstAttribute="trailing" secondItem="Qtf-2l-3Lk" secondAttribute="trailing" id="wYh-Jc-VO3"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pK-6f-A27">
+                                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pK-6f-A27">
                                                         <rect key="frame" x="122.5" y="0.0" width="107.5" height="107.5"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p3p-lh-xx9">
                                                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QE-me-6ck">
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QE-me-6ck">
                                                                 <rect key="frame" x="30.5" y="30" width="48" height="49"/>
                                                                 <state key="normal" image="Combined"/>
+                                                                <connections>
+                                                                    <action selector="addPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fnI-wW-lnB"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -139,11 +148,13 @@
                                     <constraint firstAttribute="bottom" secondItem="OWf-Mq-NyS" secondAttribute="bottom" constant="15" id="dnH-hQ-dUX"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="downView" destination="6Ba-bo-ood" id="YgV-gC-yLW"/>
-                                    <outlet property="upView" destination="uY3-Kf-uu9" id="BMF-hw-5sj"/>
+                                    <outlet property="downView" destination="6Ba-bo-ood" id="3QN-XB-WOx"/>
+                                    <outlet property="images" destination="p3p-lh-xx9" id="MG7-UW-CEV"/>
+                                    <outlet property="photoButtons" destination="1QE-me-6ck" id="x01-6N-R4o"/>
+                                    <outlet property="upView" destination="uY3-Kf-uu9" id="5Mk-9J-2d4"/>
                                 </connections>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="twH-V9-Zyf" userLabel="LayoutButtons" customClass="LayoutCollection">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="twH-V9-Zyf">
                                 <rect key="frame" x="25" y="439" width="270" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLI-ij-qmF">
@@ -151,7 +162,7 @@
                                         <state key="normal" image="DownSquares"/>
                                         <state key="selected" image="Selected" backgroundImage="DownSquares"/>
                                         <connections>
-                                            <action selector="selectLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="86P-FU-Ddd"/>
+                                            <action selector="selectLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cdk-pE-qqb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJP-MW-PIr">
@@ -159,7 +170,7 @@
                                         <state key="normal" image="UpSquares"/>
                                         <state key="selected" image="Selected" backgroundImage="UpSquares"/>
                                         <connections>
-                                            <action selector="selectLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zCS-lc-i48"/>
+                                            <action selector="selectLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rjR-zQ-wpg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKr-m1-yoe">
@@ -167,7 +178,7 @@
                                         <state key="normal" backgroundImage="AllSquares"/>
                                         <state key="selected" image="Selected" backgroundImage="AllSquares"/>
                                         <connections>
-                                            <action selector="selectLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PMf-ZP-j8Z"/>
+                                            <action selector="selectLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2KF-aL-Pyl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -180,21 +191,39 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PoC-9W-Xm7">
-                                <rect key="frame" x="80" y="101" width="160.5" height="43"/>
+                                <rect key="frame" x="83.5" y="106" width="154" height="38"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="YL9-FK-7eO">
-                                        <rect key="frame" x="74.5" y="0.0" width="12" height="9"/>
+                                        <rect key="frame" x="71" y="0.0" width="12" height="9"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="12" id="D2s-Ga-qgH"/>
                                             <constraint firstAttribute="height" constant="9" id="SZx-1Y-AWZ"/>
                                         </constraints>
                                         <variation key="heightClass=compact" image="ArrowLand"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWG-sT-OPP">
-                                        <rect key="frame" x="0.0" y="14" width="160.5" height="29"/>
-                                        <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="26"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWG-sT-OPP">
+                                        <rect key="frame" x="0.0" y="14" width="154" height="24"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Swipe up to share ">
+                                                <attributes>
+                                                    <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <font key="NSFont" size="20" name=".AppleSystemUIFont"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=compact">
+                                            <attributedString key="attributedText">
+                                                <fragment content="Swipe left to share ">
+                                                    <attributes>
+                                                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <font key="NSFont" metaFont="system" size="17"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </variation>
                                     </label>
                                 </subviews>
                             </stackView>
@@ -252,10 +281,19 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="photoView" destination="gYw-Kp-qFa" id="8A0-f1-EM6"/>
-                        <outletCollection property="layoutButtons" destination="IKr-m1-yoe" collectionClass="NSMutableArray" id="mdN-wY-Fmx"/>
-                        <outletCollection property="layoutButtons" destination="MJP-MW-PIr" collectionClass="NSMutableArray" id="P1F-IT-8ca"/>
-                        <outletCollection property="layoutButtons" destination="VLI-ij-qmF" collectionClass="NSMutableArray" id="uOd-ms-v3p"/>
+                        <outlet property="photoView" destination="gYw-Kp-qFa" id="BYA-RJ-Bra"/>
+                        <outlet property="stackView" destination="PoC-9W-Xm7" id="Y56-dS-Ynl"/>
+                        <outletCollection property="layoutButtons" destination="VLI-ij-qmF" collectionClass="NSMutableArray" id="BpS-Rt-Sd9"/>
+                        <outletCollection property="layoutButtons" destination="MJP-MW-PIr" collectionClass="NSMutableArray" id="nnq-sY-gLA"/>
+                        <outletCollection property="layoutButtons" destination="IKr-m1-yoe" collectionClass="NSMutableArray" id="hfO-2q-f1w"/>
+                        <outletCollection property="photoButtons" destination="bID-mC-xpN" collectionClass="NSMutableArray" id="sY1-V1-Bal"/>
+                        <outletCollection property="photoButtons" destination="toa-lf-BJU" collectionClass="NSMutableArray" id="60A-pG-IgB"/>
+                        <outletCollection property="photoButtons" destination="Zz6-F7-xJE" collectionClass="NSMutableArray" id="jfX-W3-G1Z"/>
+                        <outletCollection property="photoButtons" destination="1QE-me-6ck" collectionClass="NSMutableArray" id="Obd-W8-R5E"/>
+                        <outletCollection property="images" destination="cM9-V2-Ymf" collectionClass="NSMutableArray" id="j8b-lu-0Vf"/>
+                        <outletCollection property="images" destination="ljX-Yh-fVP" collectionClass="NSMutableArray" id="ZyU-m4-kUm"/>
+                        <outletCollection property="images" destination="Qtf-2l-3Lk" collectionClass="NSMutableArray" id="rBq-1v-p6J"/>
+                        <outletCollection property="images" destination="p3p-lh-xx9" collectionClass="NSMutableArray" id="TDh-IN-cnp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
