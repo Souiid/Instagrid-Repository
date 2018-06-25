@@ -14,6 +14,7 @@ class PhotoView: UIView {
     @IBOutlet var downView: UIView!
     @IBOutlet var images : UIImageView!
     @IBOutlet var photoButtons: UIButton!
+    @IBOutlet var testbutton: [UIButton]!
     
     
         enum Style {
@@ -41,9 +42,11 @@ class PhotoView: UIView {
     }
     
     func refresh() {
-       self.images.isHidden = true
-        self.images.image = #imageLiteral(resourceName: "AllSquares")
-        self.photoButtons.isHidden = false
+       images.image = nil
+        
+        photoButtons.isHidden = false
+        
+        print("\n REFRESH \n")
     }
     
     

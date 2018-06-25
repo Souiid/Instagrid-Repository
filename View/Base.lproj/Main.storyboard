@@ -282,7 +282,6 @@
                     </view>
                     <connections>
                         <outlet property="photoView" destination="gYw-Kp-qFa" id="BYA-RJ-Bra"/>
-                        <outlet property="stackView" destination="PoC-9W-Xm7" id="Y56-dS-Ynl"/>
                         <outletCollection property="layoutButtons" destination="VLI-ij-qmF" collectionClass="NSMutableArray" id="BpS-Rt-Sd9"/>
                         <outletCollection property="layoutButtons" destination="MJP-MW-PIr" collectionClass="NSMutableArray" id="nnq-sY-gLA"/>
                         <outletCollection property="layoutButtons" destination="IKr-m1-yoe" collectionClass="NSMutableArray" id="hfO-2q-f1w"/>
@@ -298,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135.19999999999999" y="131.78410794602701"/>
+            <point key="canvasLocation" x="135" y="130.98591549295776"/>
         </scene>
     </scenes>
     <resources>
