@@ -7,7 +7,7 @@
 //
 
 
-// Transformer photoview en image / deplacer outlet / refresh func, valid photoview
+// valid photoview
 
 import UIKit
 
@@ -19,11 +19,9 @@ UINavigationControllerDelegate {
     @IBOutlet weak var photoView: PhotoView!
     let imagePickerController = UIImagePickerController()
     
-    @IBOutlet var photoButtons: [UIButton]!
-    @IBOutlet var images: [UIImageView]!
+    var swipeGestureRecognizer: UISwipeGestureRecognizer?
+    var longPressGestureRecognizer: UILongPressGestureRecognizer?
     
-    @IBOutlet weak var stackView: UIStackView!
-   
     var selectorIndex = 0
     
     
@@ -32,6 +30,7 @@ UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         for button in layoutButtons {
             button.isSelected = false
         }
@@ -39,70 +38,75 @@ UINavigationControllerDelegate {
         layoutButtons[1].isSelected = true
         photoView.style = .upSquares
         
-        let swipenGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipePhotoView(_:)))
-            swipenGestureRecognizer.direction = UISwipeGestureRecognizerDirection.up
-        photoView.addGestureRecognizer(swipenGestureRecognizer)
+        swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipePhotoView(_:)))
         
+        selectSwipeGesture()
+        
+        photoView.addGestureRecognizer(swipeGestureRecognizer!)
+        NotificationCenter.default.addObserver(self, selector: #selector(selectSwipeGesture), name: .UIDeviceOrientationDidChange, object: nil)
         
         imagePickerController.delegate = self
         
     }
     
+    @objc func selectSwipeGesture() {
+        if UIDevice.current.orientation == .portrait {
+            swipeGestureRecognizer?.direction = UISwipeGestureRecognizerDirection.up
+        }else{
+            swipeGestureRecognizer?.direction = UISwipeGestureRecognizerDirection.left
+        }
+        
+    }
     
+//    @objc func pressOnImage(_ gesture: UILongPressGestureRecognizer) {
+//        if gesture.state == .began {
+//           photoView.images[selectorIndex].isHidden = true
+//            print("\n PRESS \n")
+//        }
+//    }
     
-    
-    
-    
-      func openPopUpToShare(){
-       let activityC = UIActivityViewController(activityItems: ["www.google.com"], applicationActivities: nil)
+    func openPopUpToShare(){
+        guard let image = ImageRender.rendingViewToImage(view: photoView) else { return }
+       let activityC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
 
       present(activityC, animated: true, completion: nil)
         activityC.completionWithItemsHandler = { activity, completed, items, error in
-            //
+            print("\n ERROR \n")
+            
+            self.photoView.transform = .identity
         }
+        
     }
-    
-    
-    
     
     
     @objc private func swipePhotoView(_ gesture: UISwipeGestureRecognizer) {
-        switch gesture.state {
-        case .ended, .cancelled :
-            transformPhotoView(gesture: gesture)
-            openPopUpToShare()
-            photoView.refresh()
-        default:
-            break
+        if swipeGestureRecognizer?.direction == .up {
+            animationBegin(duration: 0.5, x: 0, y: -view.frame.height)
+        }else {
+            animationBegin(duration: 0.5, x: -view.frame.width, y: 0)
+        }
+        
+        self.openPopUpToShare()
+        
+    }
+    
+    func animationBegin(duration: Double, x: CGFloat, y: CGFloat) {
+
+        UIView.animate(withDuration: duration, animations: {
+            self.photoView.transform = CGAffineTransform(translationX: x, y: y)
+        }) { _ in
+           
+            
         }
     }
     
-    func moveUp(view: UIView){
-        view.center.y += 100
-    }
-    
-    private func transformPhotoView(gesture: UISwipeGestureRecognizer) {
-        let translation = gesture.location(in: photoView)
-      
-        
-        print("TRANSLATION: ", translation)
-        
-        UIView.animate(withDuration: 0.1, animations: {
-           self.photoView.center.y -= 40
-        })
-        
-    }
-    
-    
     @IBAction func addPhoto(_ sender: UIButton) {
         
-        let ind = photoButtons.index(of: sender)
+        let ind = photoView.photoButtons.index(of: sender)
         selectorIndex = ind!
+        
         print(selectorIndex)
         print("PHOTO BUTTON : ", selectorIndex)
-        
-        
-        
         
         imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
         imagePickerController.allowsEditing = false
@@ -114,13 +118,13 @@ UINavigationControllerDelegate {
         
     }
     
-    
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let myImage = images[selectorIndex]
+        let myImage = photoView.images[selectorIndex]
+        
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             myImage.image = image
-            photoButtons[selectorIndex].isHidden = true
+            photoView.photoButtons[selectorIndex].isHidden = true
+            myImage.isHidden = false
         }else{
             print("AAAAA")
         }
@@ -128,14 +132,14 @@ UINavigationControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
         
         
     func modifyLayout(index: Int) {
-        
-        switch index {
+      switch index {
         case 0:
              photoView.style = .downSquares
         case 1:
@@ -156,10 +160,6 @@ UINavigationControllerDelegate {
         let ind = layoutButtons.index(of: sender)
         print(ind!)
         modifyLayout(index: ind!)
-        
-        
-    
-    
     }
     
     
