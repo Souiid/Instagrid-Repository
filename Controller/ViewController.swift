@@ -7,80 +7,97 @@
 //
 
 
-// valid photoview
-
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+class ViewController: UIViewController {
 
-   
+    // MARK: - OUTLETS
     @IBOutlet var layoutButtons: [UIButton]!
     @IBOutlet weak var photoView: PhotoView!
-    let imagePickerController = UIImagePickerController()
     
-    var swipeGestureRecognizer: UISwipeGestureRecognizer?
-    var longPressGestureRecognizer: UILongPressGestureRecognizer?
+    // MARK: - VARS
+   private let imagePickerController = UIImagePickerController()
     
-    var selectorIndex = 0
+    private var swipeGesture: UISwipeGestureRecognizer?
+    private var longPressGesture: UILongPressGestureRecognizer?
+    
+   
+    
+    var tag: Int?
+    
+     var selectorIndex = 0
     
     
     
-    
+    // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        setUpBehaviors()
         
-        for button in layoutButtons {
-            button.isSelected = false
-        }
-
-        layoutButtons[1].isSelected = true
+    }
+    
+    // MARK: - CLASS METHODS
+    // MARK: - GESTURE METHODS
+    private func setUpBehaviors() {
+        
         photoView.style = .upSquares
         
-        swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipePhotoView(_:)))
+        // Long press gesture
         
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(pressOnImage(_:)))
+        longPressGesture?.minimumPressDuration = 1.0
+        
+        guard let longPressGesture = longPressGesture else {return}
+        photoView.addGestureRecognizer(longPressGesture)
+        
+        // Swipe gesture
+        
+        swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipePhotoView(_:)))
         selectSwipeGesture()
         
-        photoView.addGestureRecognizer(swipeGestureRecognizer!)
+        guard let swipeGestureRecognizer = swipeGesture else {return}
+        photoView.addGestureRecognizer(swipeGestureRecognizer)
         NotificationCenter.default.addObserver(self, selector: #selector(selectSwipeGesture), name: .UIDeviceOrientationDidChange, object: nil)
+        
+        //Tap gesture
+        
+       
+        
         
         imagePickerController.delegate = self
         
     }
     
-    @objc func selectSwipeGesture() {
+    // Tap on image for remove it
+    @objc func tapOnImage(_ gesture: UITapGestureRecognizer) {
+        tag = gesture.view?.tag
+        
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePickerController.allowsEditing = false
+        
+        present(imagePickerController, animated: true) 
+        
+        print("DOUBLE TAP")
+    }
+    
+    // Select the direction of the swipe gesture according to phone rotation
+    @objc private func selectSwipeGesture() {
         if UIDevice.current.orientation == .portrait {
-            swipeGestureRecognizer?.direction = UISwipeGestureRecognizerDirection.up
+            swipeGesture?.direction = UISwipeGestureRecognizerDirection.up
         }else{
-            swipeGestureRecognizer?.direction = UISwipeGestureRecognizerDirection.left
+            swipeGesture?.direction = UISwipeGestureRecognizerDirection.left
         }
         
     }
-    
-//    @objc func pressOnImage(_ gesture: UILongPressGestureRecognizer) {
-//        if gesture.state == .began {
-//           photoView.images[selectorIndex].isHidden = true
-//            print("\n PRESS \n")
-//        }
-//    }
-    
-    func openPopUpToShare(){
-        guard let image = ImageRender.rendingViewToImage(view: photoView) else { return }
-       let activityC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-
-      present(activityC, animated: true, completion: nil)
-        activityC.completionWithItemsHandler = { activity, completed, items, error in
-            print("\n ERROR \n")
-            
-            self.photoView.transform = .identity
-        }
-        
+    // Remove all image after the press gesture
+    @objc private func pressOnImage(_ gesture: UILongPressGestureRecognizer) {
+        photoView.refresh()
     }
     
-    
+    // Animate photoView according to the phone rotation
     @objc private func swipePhotoView(_ gesture: UISwipeGestureRecognizer) {
-        if swipeGestureRecognizer?.direction == .up {
+        if swipeGesture?.direction == .up {
             animationBegin(duration: 0.5, x: 0, y: -view.frame.height)
         }else {
             animationBegin(duration: 0.5, x: -view.frame.width, y: 0)
@@ -90,20 +107,22 @@ UINavigationControllerDelegate {
         
     }
     
-    func animationBegin(duration: Double, x: CGFloat, y: CGFloat) {
-
-        UIView.animate(withDuration: duration, animations: {
+    // Animate the photoview
+    private func animationBegin(duration: Double, x: CGFloat, y: CGFloat) {
+        
+        UIView.animate(withDuration: duration) {
             self.photoView.transform = CGAffineTransform(translationX: x, y: y)
-        }) { _ in
-           
-            
         }
     }
     
-    @IBAction func addPhoto(_ sender: UIButton) {
+    //MARK: - PHOTO MANAGER METHODS
+    
+    // Add photo in a case
+    @IBAction @objc func addPhoto(_ sender: UIButton) {
+        tag = sender.tag
         
-        let ind = photoView.photoButtons.index(of: sender)
-        selectorIndex = ind!
+        guard let ind = photoView.photoButtons.index(of: sender) else {return}
+        selectorIndex = ind
         
         print(selectorIndex)
         print("PHOTO BUTTON : ", selectorIndex)
@@ -111,34 +130,27 @@ UINavigationControllerDelegate {
         imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
         imagePickerController.allowsEditing = false
         
-        present(imagePickerController, animated: true) {
+        present(imagePickerController, animated: true) 
         
         
+    }
+   
+    // Open pop up and animate photoView
+    private func openPopUpToShare(){
+        guard let image = ImageRender.rendingViewToImage(view: photoView) else { return }
+        let activityC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        present(activityC, animated: true, completion: nil)
+        activityC.completionWithItemsHandler = { activity, completed, items, error in
+            print("\n ERROR \n")
+            
+            self.photoView.transform = .identity
         }
-        
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let myImage = photoView.images[selectorIndex]
-        
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            myImage.image = image
-            photoView.photoButtons[selectorIndex].isHidden = true
-            myImage.isHidden = false
-        }else{
-            print("AAAAA")
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-        
-        
-    func modifyLayout(index: Int) {
+    // MARK: - LAYOUT METHODS
+    // Change the layout of photoView
+    private func modifyLayout(index: Int) {
       switch index {
         case 0:
              photoView.style = .downSquares
@@ -152,24 +164,17 @@ UINavigationControllerDelegate {
      
     }
     
+    // Select the layout of photoView according to layoutButtons
     @IBAction func selectLayout(_ sender: UIButton) {
         for button in layoutButtons {
             button.isSelected = false
         }
         sender.isSelected = true
-        let ind = layoutButtons.index(of: sender)
-        print(ind!)
-        modifyLayout(index: ind!)
+        guard let ind = layoutButtons.index(of: sender) else {return}
+        print(ind)
+        modifyLayout(index: ind)
     }
     
-    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-   
-    
 }
 

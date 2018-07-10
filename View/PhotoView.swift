@@ -10,14 +10,15 @@ import UIKit
 
 class PhotoView: UIView {
     
+    // - MARK: OUTLETS
     @IBOutlet var upView : UIView!
     @IBOutlet var downView: UIView!
-    @IBOutlet var images : UIImageView!
-    @IBOutlet var photoButtons: UIButton!
-    @IBOutlet var testbutton: [UIButton]!
+    @IBOutlet var images : [UIImageView]!
+    @IBOutlet var photoButtons: [UIButton]!
+   
     
-    
-        enum Style {
+    // - MARK: VARS & ENUM
+    enum Style {
         case upSquares, downSquares, allSquares
     }
     
@@ -27,6 +28,7 @@ class PhotoView: UIView {
         }
     }
     
+    // - MARK: METHODS
     func setStyle(_ style: Style) {
         switch style {
         case .upSquares:
@@ -42,14 +44,15 @@ class PhotoView: UIView {
     }
     
     func refresh() {
-       images.image = nil
-        
-        photoButtons.isHidden = false
-        
+        for image in images {
+            image.image = nil
+        }
+        for button in photoButtons {
+            button.isHidden = false
+        }
+       
         print("\n REFRESH \n")
     }
-    
-    
     
 }
 

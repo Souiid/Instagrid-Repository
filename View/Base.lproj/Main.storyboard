@@ -36,7 +36,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uY3-Kf-uu9">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cM9-V2-Ymf">
+                                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cM9-V2-Ymf">
                                                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bID-mC-xpN">
@@ -60,7 +60,7 @@
                                                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQv-II-02b">
                                                         <rect key="frame" x="122.5" y="0.0" width="107.5" height="107.5"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-Yh-fVP">
+                                                            <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-Yh-fVP">
                                                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                             </imageView>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toa-lf-BJU">
@@ -89,7 +89,7 @@
                                                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ba-bo-ood">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qtf-2l-3Lk">
+                                                            <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qtf-2l-3Lk">
                                                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                             </imageView>
                                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zz6-F7-xJE">
@@ -113,7 +113,7 @@
                                                     <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pK-6f-A27">
                                                         <rect key="frame" x="122.5" y="0.0" width="107.5" height="107.5"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p3p-lh-xx9">
+                                                            <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p3p-lh-xx9">
                                                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="107.5"/>
                                                             </imageView>
                                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QE-me-6ck">
@@ -149,9 +149,15 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="downView" destination="6Ba-bo-ood" id="3QN-XB-WOx"/>
-                                    <outlet property="images" destination="p3p-lh-xx9" id="MG7-UW-CEV"/>
-                                    <outlet property="photoButtons" destination="1QE-me-6ck" id="x01-6N-R4o"/>
                                     <outlet property="upView" destination="uY3-Kf-uu9" id="5Mk-9J-2d4"/>
+                                    <outletCollection property="images" destination="cM9-V2-Ymf" collectionClass="NSMutableArray" id="eQu-lS-5SV"/>
+                                    <outletCollection property="images" destination="ljX-Yh-fVP" collectionClass="NSMutableArray" id="e1s-zo-EaN"/>
+                                    <outletCollection property="images" destination="Qtf-2l-3Lk" collectionClass="NSMutableArray" id="tVR-Hk-YVh"/>
+                                    <outletCollection property="images" destination="p3p-lh-xx9" collectionClass="NSMutableArray" id="uXm-gr-xMa"/>
+                                    <outletCollection property="photoButtons" destination="bID-mC-xpN" collectionClass="NSMutableArray" id="tiv-9n-6ZC"/>
+                                    <outletCollection property="photoButtons" destination="toa-lf-BJU" collectionClass="NSMutableArray" id="zpY-Z1-mvD"/>
+                                    <outletCollection property="photoButtons" destination="Zz6-F7-xJE" collectionClass="NSMutableArray" id="YSW-a9-ay4"/>
+                                    <outletCollection property="photoButtons" destination="1QE-me-6ck" collectionClass="NSMutableArray" id="7HV-79-N2k"/>
                                 </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="twH-V9-Zyf">
@@ -186,15 +192,18 @@
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miu-zP-4ms">
                                 <rect key="frame" x="101" y="20" width="118.5" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="6Ar-6K-NPy"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PoC-9W-Xm7">
-                                <rect key="frame" x="83.5" y="106" width="154" height="38"/>
+                                <rect key="frame" x="99" y="107.5" width="123.5" height="36.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="YL9-FK-7eO">
-                                        <rect key="frame" x="71" y="0.0" width="12" height="9"/>
+                                        <rect key="frame" x="56" y="0.0" width="12" height="9"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="12" id="D2s-Ga-qgH"/>
                                             <constraint firstAttribute="height" constant="9" id="SZx-1Y-AWZ"/>
@@ -202,12 +211,12 @@
                                         <variation key="heightClass=compact" image="ArrowLand"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWG-sT-OPP">
-                                        <rect key="frame" x="0.0" y="14" width="154" height="24"/>
+                                        <rect key="frame" x="0.0" y="14" width="123.5" height="22.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Swipe up to share ">
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <font key="NSFont" size="20" name=".AppleSystemUIFont"/>
+                                                    <font key="NSFont" size="20" name="Delm-Medium"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -219,7 +228,7 @@
                                                     <attributes>
                                                         <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <font key="NSFont" metaFont="system" size="17"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -285,14 +294,6 @@
                         <outletCollection property="layoutButtons" destination="VLI-ij-qmF" collectionClass="NSMutableArray" id="BpS-Rt-Sd9"/>
                         <outletCollection property="layoutButtons" destination="MJP-MW-PIr" collectionClass="NSMutableArray" id="nnq-sY-gLA"/>
                         <outletCollection property="layoutButtons" destination="IKr-m1-yoe" collectionClass="NSMutableArray" id="hfO-2q-f1w"/>
-                        <outletCollection property="photoButtons" destination="bID-mC-xpN" collectionClass="NSMutableArray" id="sY1-V1-Bal"/>
-                        <outletCollection property="photoButtons" destination="toa-lf-BJU" collectionClass="NSMutableArray" id="60A-pG-IgB"/>
-                        <outletCollection property="photoButtons" destination="Zz6-F7-xJE" collectionClass="NSMutableArray" id="jfX-W3-G1Z"/>
-                        <outletCollection property="photoButtons" destination="1QE-me-6ck" collectionClass="NSMutableArray" id="Obd-W8-R5E"/>
-                        <outletCollection property="images" destination="cM9-V2-Ymf" collectionClass="NSMutableArray" id="j8b-lu-0Vf"/>
-                        <outletCollection property="images" destination="ljX-Yh-fVP" collectionClass="NSMutableArray" id="ZyU-m4-kUm"/>
-                        <outletCollection property="images" destination="Qtf-2l-3Lk" collectionClass="NSMutableArray" id="rBq-1v-p6J"/>
-                        <outletCollection property="images" destination="p3p-lh-xx9" collectionClass="NSMutableArray" id="TDh-IN-cnp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
