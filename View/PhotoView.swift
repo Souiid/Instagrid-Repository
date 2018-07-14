@@ -29,6 +29,7 @@ class PhotoView: UIView {
     }
     
     // - MARK: METHODS
+    // Manage PhotoView
     func setStyle(_ style: Style) {
         switch style {
         case .upSquares:
@@ -42,11 +43,12 @@ class PhotoView: UIView {
             downView.isHidden = false
         }
     }
-    
+    //Remove all images 
     func refresh() {
         for image in images {
             image.image = nil
         }
+        
         for button in photoButtons {
             button.isHidden = false
         }

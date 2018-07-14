@@ -11,18 +11,16 @@ import UIKit
 
 class ImageRender {
     
+    //Get the object's size and convert it to image.
+
     static func rendingViewToImage(view: UIView)-> UIImage? {
+    
         UIGraphicsBeginImageContext(view.bounds.size)
         view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil}
         UIGraphicsEndImageContext()
         return image
         
-//        let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
-//        let imageOfView = renderer.image { ctx in
-//        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-//        }
-//
-//        return imageOfView
+
     }
 }

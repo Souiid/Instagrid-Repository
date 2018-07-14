@@ -21,11 +21,9 @@ class ViewController: UIViewController {
     private var swipeGesture: UISwipeGestureRecognizer?
     private var longPressGesture: UILongPressGestureRecognizer?
     
-   
+   var tag: Int?
     
-    var tag: Int?
     
-     var selectorIndex = 0
     
     
     
@@ -61,10 +59,6 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(selectSwipeGesture), name: .UIDeviceOrientationDidChange, object: nil)
         
         //Tap gesture
-        
-       
-        
-        
         imagePickerController.delegate = self
         
     }
@@ -120,12 +114,6 @@ class ViewController: UIViewController {
     // Add photo in a case
     @IBAction @objc func addPhoto(_ sender: UIButton) {
         tag = sender.tag
-        
-        guard let ind = photoView.photoButtons.index(of: sender) else {return}
-        selectorIndex = ind
-        
-        print(selectorIndex)
-        print("PHOTO BUTTON : ", selectorIndex)
         
         imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
         imagePickerController.allowsEditing = false
